@@ -1,0 +1,41 @@
+{
+  "cli": {
+    "version": ">= 3.17.0"
+  },
+  "build": {
+    "development": {
+      "channel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview",
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://ciudadgps.com"
+      },
+      "ios": {
+        "resourceClass": "m-medium",
+        "image": "latest"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "hectorgabrieldm@hotmail.com",
+        "ascAppId": "1643027976",
+        "appleTeamId": "4Z2QNGLAAF"
+      }
+    }
+  }
+}

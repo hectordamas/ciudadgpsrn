@@ -1,32 +1,115 @@
 {
   "expo": {
-    "name": "ciudadgps",
-    "slug": "ciudadgps",
-    "version": "1.0.0",
+    "name": "CiudadGPS",
+    "slug": "Ciudadgps",
+    "scheme": "ciudadgps",
+    "version": "1.3.93",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
+      "resizeMode": "cover",
+      "backgroundColor": "#ff2d31"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ciudadgps.app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAvM85E_L3EOZ-P6x5kMm0xDCd_qRmcubU"
+      },
+      "infoPlist": {
+        "NSCameraUsageDescription": "CiudadGPS necesita el acceso a tu cámara.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "CiudadGPS necesita el acceso a tu ubicación para poder mostrate los comercios más cercanos a tu zona, y la distancia necesaria para descubrirlos.",
+        "NSLocationAlwaysUsageDescription": "CiudadGPS necesita el acceso a tu ubicación para poder mostrate los comercios más cercanos a tu zona, y la distancia necesaria para descubrirlos.",
+        "NSLocationWhenInUseUsageDescription": "CiudadGPS necesita el acceso a tu ubicación para poder mostrate los comercios más cercanos a tu zona, y la distancia necesaria para descubrirlos.",
+        "NSPhotoLibraryUsageDescription": "Permite a $(PRODUCT_NAME) acceder a tus fotos.",
+        "NSPhotoLibraryAddUsageDescription": "Permite a $(PRODUCT_NAME) guardar a tus fotos."
+      },
+      "buildNumber": "125"
     },
     "android": {
+      "package": "com.ciudadgps.app",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAvM85E_L3EOZ-P6x5kMm0xDCd_qRmcubU"
+        }
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "data": [
+            {
+              "scheme": "ciudadgps://"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#ff373a"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_MEDIA_LOCATION"
+      ],
+      "versionCode": 125
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "La app accederá a tu galería de imágenes"
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "La app accederá a tu ubicación"
+        }
+      ],
+      [
+        "expo-updates",
+        {
+          "username": "hector_damas"
+        }
+      ],
+      "@logrocket/react-native",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#ffffff"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "58614fcf-85b5-4676-9b6c-31fe705c836f"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/58614fcf-85b5-4676-9b6c-31fe705c836f"
     }
   }
 }

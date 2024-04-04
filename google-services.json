@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "148618277850",
+    "project_id": "ciudad-gps",
+    "storage_bucket": "ciudad-gps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148618277850:android:d29a46b049ab95b33a46e3",
+        "android_client_info": {
+          "package_name": "com.ciudadgps.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148618277850-9r1lkn0649c3o85ndgtm94hmuddtlgpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDOAuwVFjgyv6PobDawFYtbcfm_NM1P0W0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148618277850-9r1lkn0649c3o85ndgtm94hmuddtlgpg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "148618277850-cuahqsob2pah0vjlnoi5ou17ealb3t40.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ciudadgps.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
