@@ -48,49 +48,26 @@ const StoryCircleListItem = (props) => {
             <Divider />
             <View style={{flexDirection:'row', alignItems:'center', paddingVertical:10, width: '100%'}}>
                 <View style={{flexDirection:'row', flex: 5.6, paddingLeft: 20}}>
-                    {
-                        item.stories.length > 0 ? (
-                            <TouchableOpacity onPress={() => _handleItemPress(item)}>
-                            <LinearGradient
-                                colors={['#770EF0', '#F700A9', '#F3BF01']}
-                                start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
-                                style={{height: size + 4, width: size + 4, alignItems: 'center', justifyContent: 'center', borderRadius: 64 / 2, marginRight:10}}
-                                >
-                                    <Image
-                                        style={{
-                                            height: size,
-                                            width: size,
-                                            borderRadius: 100,
-                                            borderColor: '#fff',
-                                            borderWidth: 2,
-                                            backgroundColor:  '#e9e9e9'
-                                        }}
-                                        source={{uri: EXPO_PUBLIC_API_URL + item.logo}}
-                                        defaultSource={Platform.OS === 'ios' ? DEFAULT_AVATAR : null}
-                                    />
-                            </LinearGradient>
-                        </TouchableOpacity>
-                        ) : (
-                        <View>
-                            <View
-                                style={{height: size + 4, width: size + 4, alignItems: 'center', justifyContent: 'center', borderRadius: 64 / 2, marginRight:10}}
-                                >
-                                    <Image
-                                        style={{
-                                            height: size,
-                                            width: size,
-                                            borderRadius: 100,
-                                            borderColor: '#e9e9e9',
-                                            borderWidth: 1,
-                                            backgroundColor: '#e9e9e9'
-                                        }}
-                                        source={{uri: EXPO_PUBLIC_API_URL + item.logo}}
-                                        defaultSource={Platform.OS === 'ios' ? DEFAULT_AVATAR : null}
-                                    />
-                            </View>
+
+                    <View>
+                        <View
+                            style={{height: size + 4, width: size + 4, alignItems: 'center', justifyContent: 'center', borderRadius: 64 / 2, marginRight:10}}
+                            >
+                                <Image
+                                    style={{
+                                        height: size,
+                                        width: size,
+                                        borderRadius: 100,
+                                        borderColor: '#e9e9e9',
+                                        borderWidth: 1,
+                                        backgroundColor: '#e9e9e9'
+                                    }}
+                                    source={{uri: EXPO_PUBLIC_API_URL + item.logo}}
+                                    defaultSource={Platform.OS === 'ios' ? DEFAULT_AVATAR : null}
+                                />
                         </View>
-                        )
-                    }
+                    </View>
+            
                     <View style={{justifyContent:'center', flex: 1}}>
                         <Text style={{fontFamily:'inter-medium', flexWrap: 'wrap', marginBottom:5}} numberOfLines={1}>{item.name}</Text>
                         <View style={{flexDirection: 'row', justifyContent:'space-between', alignItems: 'center'}}>

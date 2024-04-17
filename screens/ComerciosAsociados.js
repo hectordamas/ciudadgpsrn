@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, Image, TextInput, Alert, ActivityIndicator, Modal, TouchableOpacity, Pressable, KeyboardAvoidingView, ScrollView} from 'react-native';
+import {View, Image, TextInput, Alert, ActivityIndicator, Modal, TouchableOpacity, Pressable, KeyboardAvoidingView, ScrollView, Platform} from 'react-native';
 import { icons, colores, images } from '../constants';
-import { Appbar, Button, Divider} from 'react-native-paper';
+import { Appbar, Button, Divider, Text} from 'react-native-paper';
 import { Contexto } from '../functions/Context';
-import {ComerciosAsociadosList, Pricing, Spinner, SwipeDownModal} from '../components';
+import {ComerciosAsociadosList, Pricing, Spinner, SwipeDownModal, InstaStory} from '../components';
 import * as ImagePicker from 'expo-image-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
@@ -11,6 +11,7 @@ const {EXPO_PUBLIC_API_URL} = process.env;
 
 const initialState = {
     commerces: [],
+    stories: [],
     loaded: false,
     emailModal: false,
     codeModal: false,
@@ -47,9 +48,8 @@ class ComerciosAsociados extends React.Component{
                 },
             }).then(res => res.json())
             .then((res) => {
-                console.log(res)
-                let {commerces} = res
-                this.setState({commerces, loaded:true})
+                console.log(res.stories)
+                this.setState({commerces: res?.commerces, stories: res?.stories, loaded:true})
             })
             .catch(err => console.log(err))
         })
@@ -132,7 +132,7 @@ class ComerciosAsociados extends React.Component{
             quality: 1,
         });    
         if (!result.canceled) {
-            let localUri = result.uri;
+            let localUri = result.assets[0].uri;
             let filename = localUri.split('/').pop();
 
             let match = /\.(\w+)$/.exec(filename);
@@ -194,7 +194,8 @@ class ComerciosAsociados extends React.Component{
 
         return (
             <>
-                {this.state.pricing ? <Pricing setPricing={this.setPricing} commerceName={this.state.commerceName} /> : 
+                {this.state.pricing ? 
+                <Pricing setPricing={this.setPricing} commerceName={this.state.commerceName} /> : 
                 <View style={{flex:1}}>    
                     {//Previsualizacion de Historia
                         image &&
@@ -335,13 +336,14 @@ class ComerciosAsociados extends React.Component{
             
                     {loaded ? (
                         <View style={{flex: 1}}>
+
                             {commerces?.length > 0 ? (
                                 <ScrollView contentContainerStyle={{paddingTop: 10}}>
                                     <View style={{justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20}}>
                                         <Image source={images.locales_asociados} style={{height: 130}} resizeMode='contain'/>
                                     </View>
                                     <View style={{paddingHorizontal: 20}}>
-                                        <Text style={{fontFamily:'inter-medium', fontSize:15, marginBottom: 5}}>
+                                        <Text style={{fontFamily:'inter-medium', fontSize:15, marginBottom: 5}} numberOfLines={1}>
                                             Gestiona la información de tus locales asociados
                                         </Text> 
                                     </View>
@@ -357,6 +359,44 @@ class ComerciosAsociados extends React.Component{
                                         </Button>
                                     </View>
 
+                                    {this.state.stories?.length > 0 &&
+                                        <View style={{marginVertical: 5}}>
+                                            <Text 
+                                                variant="titleMedium" 
+                                                style={{
+                                                    marginHorizontal: 20, 
+                                                    marginBottom: 5, 
+                                                    fontFamily: 'inter-medium'
+                                                }}>Tus Historias</Text>
+                                            <InstaStory 
+                                                data={this.state.stories}
+                                                navigation={navigation}
+                                                duration={10}
+                                                customSwipeUpComponent={(text) => (
+                                                    <>
+                                                        {text &&
+                                                            <View style={{backgroundColor: 'rgba(0,0,0,0.8)', position:'absolute', bottom:0, right:0, width:'100%', padding:20, zIndex: 1000}}>
+                                                                <View style={{marginBottom: 15}}>
+                                                                    <Text style={{color: colores.white}}>{text}</Text>
+                                                                </View>
+                                                            </View>
+                                                        }
+                                                    </>
+                                                    )
+                                                }
+                                            />
+                                        </View>
+                                    }  
+
+                                    <View>
+                                        <Text 
+                                            variant="titleMedium" 
+                                            style={{
+                                                marginHorizontal: 20, 
+                                                fontFamily: 'inter-medium', 
+                                                paddingTop: 10
+                                            }}>Tus Locales Asociados</Text>
+                                    </View>
                                     <ComerciosAsociadosList data={commerces} navigation={navigation} afterDestroyStory={this.afterDestroyStory} newStory={this.newStory} visibleManagementOptions={this.visibleManagementOptions} duration={10} />
     
                                 </ScrollView>

@@ -7,7 +7,6 @@ import {isNullOrWhitespace} from "./helpers/ValidationHelpers";
 import AndroidCubeEffect from "./components/AndroidCubeEffect";
 import CubeNavigationHorizontal from "./components/CubeNavigationHorizontal";
 
-
 export const Story = (props) => {
     const {
         data,

@@ -11,5 +11,6 @@ npm-debug.*
 web-build/
 google-services.json
 GoogleService-Info.plist
+screens/Commerce.js
 # macOS
 .DS_Store

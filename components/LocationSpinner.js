@@ -41,6 +41,7 @@ const LocationSpinner = () => {
         loop
         style={{
           width: width - 20,
+          height: 300
         }}
       />
 

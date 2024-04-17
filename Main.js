@@ -1,6 +1,6 @@
 import React, {createRef} from "react";
 import {Alert, Platform, View} from "react-native";
-import * as ExpoLiking from 'expo-linking';
+import * as ExpoLinking from 'expo-linking';
 import {NavigationContainer, DefaultTheme} from "@react-navigation/native";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -260,8 +260,7 @@ class Main extends React.Component {
 
   render() {
     const {error, login, logout, loaded, loggedIn, noLocation, done, check, user} = this.state
-    const prefix = ExpoLiking.makeUrl("/");
-    
+    const prefix = ExpoLinking.createURL("/")
 
     if(noLocation){
       Alert.alert('Permitir localización', 'Para brindarte una óptima experiencia de usuario, debes permitirle a CiudadGPS acceder a tu ubicación. \n\nRecarga la aplicación cuando habilites el acceso en el panel de configuración', [
@@ -293,7 +292,7 @@ class Main extends React.Component {
                 handleRegister: this.handleLogin,
                 handleLogout: this.handleLogout,
               }}>  
-              <Notification />          
+              {this.state.navigation && <Notification navigation={this.state.navigation}/>}          
               { !done ? <OnboardingScreen initialize={this.initialize} /> :
                 <NavigationContainer 
                   ref={this.navigationRef}
@@ -336,7 +335,7 @@ class Main extends React.Component {
                       />
                       <Drawer.Screen name="Search" component={Search} options={{
                           title: "Buscar Locales",
-                          drawerIcon: ({color}) => <Ionicons name="ios-search" size={22} color={color} />,
+                          drawerIcon: ({color}) => <Ionicons name="search-sharp" size={22} color={color} />,
                         }}
                       />
                       <Drawer.Screen name="Jobs" component={Jobs}

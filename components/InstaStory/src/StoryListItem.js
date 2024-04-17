@@ -172,7 +172,10 @@ export const StoryListItem = (props) => {
         >
             <SafeAreaView>
                 <View style={styles.backgroundContainer}>
-                    <Image onLoadEnd={() => start()}
+                    <Image onLoadEnd={() => {
+                                start()
+                                console.log(EXPO_PUBLIC_API_URL + content[current].image)
+                            }}
                            source={{uri: EXPO_PUBLIC_API_URL + content[current].image}}
                            style={styles.image}
                     />

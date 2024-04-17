@@ -13,7 +13,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-function Notification() {
+function Notification({navigation}) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
@@ -26,6 +26,7 @@ function Notification() {
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
+      handleNotification(notification);
     });
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
@@ -60,6 +61,19 @@ function Notification() {
     }
   }, [expoPushToken])
 
+  function handleNotification(notification) {
+    const data = notification?.data;
+    if(data){
+      if (data.screen) {
+        if(data.commerceId){
+          navigation.navigate(data.screen, {commerce_id: data.commerceId});
+        }else{
+          navigation.navigate(data.screen);
+        }
+      }
+    }
+  }
+  
   return <></>
 }
 

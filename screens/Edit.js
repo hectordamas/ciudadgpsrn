@@ -234,7 +234,7 @@ export default class Edit extends React.Component{
             quality: 1,
         });
         if (!result.canceled) {
-            let localUri = result.uri;
+            let localUri = result.assets[0].uri;
             let filename = localUri.split('/').pop();
 
             let match = /\.(\w+)$/.exec(filename);
