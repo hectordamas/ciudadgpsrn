@@ -166,7 +166,8 @@ class ComerciosAsociados extends React.Component{
                 'Authorization': this.context?.token
             }, 
             body: formData
-        }).then(res => res.json())
+        })
+        .then(res => res.json())
         .then((res) => {
             this.setState({processing: false, image: null}, () => {
                 Alert.alert('', 'Historia creada con éxito!')

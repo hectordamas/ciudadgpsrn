@@ -47,18 +47,14 @@ function Notification({navigation}) {
           'Content-Type': 'application/json',
           'X-Requested-With' : 'XMLHttpRequest',
         },
-        body: JSON.stringify({userId: user.id, token: expoPushToken})
+        body: JSON.stringify({userId: user?.id, token: expoPushToken})
       })
       .then(res => res.json())
-      .then((res) => {
-        console.log(res)
-      })
+      .then((res) => console.log(res))
       .catch(err => console.log(err))
     }
 
-    if(user){
-      setTokenValues()
-    }
+    setTokenValues()
   }, [expoPushToken])
 
   function handleNotification(notification) {
