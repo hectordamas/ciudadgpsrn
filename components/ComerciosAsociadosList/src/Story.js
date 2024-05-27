@@ -95,7 +95,7 @@ export const Story = (props) => {
     }
 
     const renderStoryList = () => selectedData.map((x, i) => {
-        return (<StoryListItem duration={duration * 1000}
+        return (<StoryListItem duration={duration > 0 ? duration * 1000 : 1000 * 1000}
                                key={i}
                                name={x.name}
                                logo={x.logo}
@@ -183,7 +183,3 @@ export const Story = (props) => {
     );
 };
 export default Story;
-
-Story.defaultProps = {
-    showAvatarText: true
-}

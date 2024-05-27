@@ -8,6 +8,7 @@ const {EXPO_PUBLIC_API_URL} = process.env;
 import { Contexto } from '../functions/Context';
 import { distanceBetweenTwoPoints, getRegion, maxDistance} from '../functions';
 import {Appbar} from 'react-native-paper'
+import { Flow } from 'react-native-animated-spinkit'
 
 const ListFooterComponent = ({masResultados}) => {
     return (
@@ -15,7 +16,7 @@ const ListFooterComponent = ({masResultados}) => {
             {
                 masResultados ? (
                     <View style={{marginTop:10, justifyContent:'center', alignItems:'center'}}>
-                        <ActivityIndicator size={25} color={colores.primary}/>
+                        <Flow size={30} color={colores.primary}/>
                     </View>
                 ) : (
                     <View>

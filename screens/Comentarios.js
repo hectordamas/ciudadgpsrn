@@ -82,16 +82,15 @@ export default class Comentarios extends React.Component{
                 </Appbar.Header>
 
                 <View style={{flex:1}}>
-                    {
-                        loaded ?
+                    {loaded ?
                             comments?.length > 0 ? 
                                 <FlatList 
                                     contentContainerStyle={{paddingVertical: 10}}
                                     data={comments}
                                     renderItem={({item}) => {
                                             return (
-                                            <View key={item.id} style={{marginBottom: 15, paddingBottom: 10, borderBottomWidth: 0.2, borderColor: "#e6e6e6", paddingHorizontal: 20, flexWrap: 'wrap', width: width}}>
-                                              <View key={item.id} style={{ flexDirection: "row" }}>
+                                            <View key={item.id} style={{marginBottom: 15, paddingBottom: 10, borderBottomWidth: 0.2, borderColor: "#e6e6e6", paddingHorizontal: 20, maxWidth: width * 0.85}}>
+                                              <View key={item.id} style={{ flexDirection: "row", flex: 1}}>
                                                 <View style={{ marginRight: 10 }}>
                                                   <Image source={item.user.avatar ? {uri: item.user.avatar.startsWith('http') ? item.user.avatar : EXPO_PUBLIC_API_URL + item.user.avatar} : images.user_avatar_default} style={{ width: 50, height: 50, borderRadius: 25}}/>
                                                 </View>
@@ -105,7 +104,7 @@ export default class Comentarios extends React.Component{
                                                   <View style={{ flexDirection: "row" }}>
                                                     {rate.map((rate, key) => <Image key={key} source={rate <= item.rating ? icons.estrella_filled : icons.estrella} style={{ width: 15, height: 15, tintColor:'#ffc107' }}/>)}
                                                   </View>
-                                                  {item.comment && <Text style={{ textAlign: "justify", fontFamily: "roboto", fontSize: 13, marginTop: 5}} >
+                                                  {item.comment && <Text style={{fontFamily: "roboto", fontSize: 13, marginTop: 5}} >
                                                     {item.comment}
                                                   </Text>}
                       

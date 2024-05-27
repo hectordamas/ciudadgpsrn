@@ -21,11 +21,15 @@
     "production": {
       "channel": "production",
       "env": {
+        "EX_UPDATES_ANDROID_DELAY_LOAD_APP": "false",
         "EXPO_PUBLIC_API_URL": "https://ciudadgps.com"
       },
       "ios": {
         "resourceClass": "m-medium",
         "image": "latest"
+      },
+      "android": {
+        "image" : "latest"
       }
     }
   },

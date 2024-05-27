@@ -149,11 +149,7 @@ const ProductsCreate = ({navigation, route}) => {
                     commerce_id={commerce_id}
                 />
 
-                <ScrollView contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 10}}>
-                    <View style={{alignItems: 'center', marginVertical: 10}}>
-                        <Image source={images.empty_cart} style={{height: 150}} resizeMode='contain'/>
-                    </View>
-
+                <ScrollView contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 20}}>
                     
                     <View style={{marginBottom: 15}}>
                         <Button 

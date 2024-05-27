@@ -13,13 +13,13 @@ Notifications.setNotificationHandler({
   }),
 });
 
-function Notification({navigation}) {
+function Notification({ navigation }) {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-  const {EXPO_PUBLIC_API_URL} = process.env
-  const {user} = useContext(Contexto)
+  const { EXPO_PUBLIC_API_URL } = process.env;
+  const { user } = useContext(Contexto);
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
@@ -30,7 +30,7 @@ function Notification({navigation}) {
     });
 
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
+      handleNotification(response.notification);
     });
 
     return () => {
@@ -41,40 +41,42 @@ function Notification({navigation}) {
 
   useEffect(() => {
     const setTokenValues = async () => {
-      await fetch(`${EXPO_PUBLIC_API_URL}/api/users/setToken`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Requested-With' : 'XMLHttpRequest',
-        },
-        body: JSON.stringify({userId: user?.id, token: expoPushToken})
-      })
-      .then(res => res.json())
-      .then((res) => console.log(res))
-      .catch(err => console.log(err))
-    }
+      if (expoPushToken && user?.id) {
+        await fetch(`${EXPO_PUBLIC_API_URL}/api/users/setToken`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: JSON.stringify({ userId: user.id, token: expoPushToken })
+        })
+          .then(res => res.json())
+          .then(res => console.log(res))
+          .catch(err => console.log(err));
+      }
+    };
 
-    setTokenValues()
-  }, [expoPushToken])
+    setTokenValues();
+  }, [expoPushToken]);
 
   function handleNotification(notification) {
-    const data = notification?.data;
-    if(data){
+    const data = notification?.request?.content?.data;
+    console.log('Notification data:', data); // Para depuración
+    if (data) {
       if (data.screen) {
-        if(data.commerceId){
-          navigation.navigate(data.screen, {commerce_id: data.commerceId});
-        }else{
+        if (data.commerceId) {
+          navigation.navigate(data.screen, { commerce_id: data.commerceId });
+        } else {
           navigation.navigate(data.screen);
         }
       }
     }
   }
-  
-  return <></>
+
+  return null;
 }
 
-export default memo(Notification)
-
+export default memo(Notification);
 
 async function registerForPushNotificationsAsync() {
   let token;

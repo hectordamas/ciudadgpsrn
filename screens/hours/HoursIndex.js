@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useState, useEffect } from "react";
+import React, { useContext, useCallback, useState, useEffect, memo } from "react";
 import {View, ScrollView, Switch, Modal, ActivityIndicator, Alert} from "react-native"
 import { Appbar, Button, Text } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
@@ -150,4 +150,4 @@ const HoursIndex = ({navigation, route}) => {
 }
 
 
-export default HoursIndex
+export default memo(HoursIndex)

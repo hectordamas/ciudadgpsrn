@@ -92,7 +92,7 @@ export const Story = (props) => {
     }
 
     const renderStoryList = () => selectedData.map((x, i) => {
-        return (<StoryListItem duration={duration * 1000}
+        return (<StoryListItem duration={duration > 0 ? duration * 1000 : 1000 * 1000}
                                navigation={navigation}
                                key={i}
                                name={x.name}
@@ -148,7 +148,7 @@ export const Story = (props) => {
                     avatarSize={avatarSize}
                     unPressedBorderColor={unPressedBorderColor}
                     pressedBorderColor={pressedBorderColor}
-                    showText={showAvatarText}
+                    showText={showAvatarText || true}
                     textStyle={avatarTextStyle}
                 />
             </View>
@@ -172,7 +172,3 @@ export const Story = (props) => {
     );
 };
 export default React.memo(Story);
-
-Story.defaultProps = {
-    showAvatarText: true
-}

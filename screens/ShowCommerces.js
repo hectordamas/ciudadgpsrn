@@ -7,6 +7,7 @@ import { SearchingCommerces, VistaMapa, SwipeDownModal} from '../components';
 import { Contexto } from '../functions/Context';
 import { distanceBetweenTwoPoints, getRegion, maxDistance } from '../functions';
 import {Appbar} from 'react-native-paper'
+import { Flow } from 'react-native-animated-spinkit'
 
 const {EXPO_PUBLIC_API_URL} = process.env;
 
@@ -17,7 +18,7 @@ const ListFooterComponent = (props) => {
             {
                 masResultados ? (
                     <View style={{marginTop:10, justifyContent:'center', alignItems:'center'}}>
-                        <ActivityIndicator size={25} color={colores.primary}/>
+                        <Flow size={30} color={colores.primary}/>
                     </View>
                 ) : (
                     <View>

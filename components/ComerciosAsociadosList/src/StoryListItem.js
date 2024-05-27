@@ -265,10 +265,6 @@ export const StoryListItem = (props) => {
 
 export default StoryListItem;
 
-StoryListItem.defaultProps = {
-    duration: 10000
-}
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

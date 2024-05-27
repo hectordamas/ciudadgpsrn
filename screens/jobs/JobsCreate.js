@@ -82,11 +82,7 @@ const JobsCreate = ({navigation, route}) => {
               <Appbar.Content title={<Text style={{fontFamily:'inter-medium', textTransform:'capitalize', fontSize:15}}>Publicar un Nuevo Empleo</Text>} />
         </Appbar.Header>
 
-        <ScrollView style={{paddingHorizontal: 20}}>
-
-            <View style={{alignItems: 'center'}}>
-                <Image source={images.cv} style={{height: 150}} resizeMode='contain'/>
-            </View>
+        <ScrollView style={{paddingHorizontal: 20, paddingVertical: 20}}>
             
             <View style={{marginBottom: 20}}>
                 <Text style={{fontFamily: 'inter-medium', marginBottom: 5}}>Cargo:</Text>

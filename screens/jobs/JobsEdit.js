@@ -117,9 +117,6 @@ const JobsEdit = ({navigation, route}) => {
                 
                     <ScrollView contentContainerStyle={{paddingHorizontal: 20, paddingVertical: 20}}>
                 
-                        <View style={{alignItems: 'center'}}>
-                            <Image source={images.cv} style={{height: 150}} resizeMode='contain'/>
-                        </View>
 
                         <View style={{marginBottom: 20}}>
                             <Text style={{fontFamily: 'inter-medium', marginBottom: 5}}>Cargo:</Text>

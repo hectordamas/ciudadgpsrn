@@ -269,9 +269,6 @@ export const StoryListItem = (props) => {
 
 export default React.memo(StoryListItem);
 
-StoryListItem.defaultProps = {
-    duration: 10000
-}
 
 const styles = StyleSheet.create({
     container: {

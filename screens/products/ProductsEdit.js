@@ -155,7 +155,7 @@ const ProductsEdit = ({navigation, route}) => {
                     />
 
                     <ScrollView style={{paddingHorizontal: 20, paddingVertical: 10}}>
-                        <View style={{alignItems: 'center'}}>
+                        <View style={{alignItems: 'center', marginVertical: 20}}>
                             <Image source={{uri: EXPO_PUBLIC_API_URL + imageName}} style={{height: 100, width: 100}} resizeMode='contain'/>
                         </View>
 

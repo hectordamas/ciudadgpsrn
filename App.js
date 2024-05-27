@@ -8,7 +8,6 @@ import * as Updates from 'expo-updates';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PaperProvider, DefaultTheme } from 'react-native-paper';
 import { colores } from './constants';
-import LogRocket from '@logrocket/react-native';
 import LocationSpinner from './components/LocationSpinner';
 import ErrorLocation from './components/ErrorLocation';
 
@@ -28,7 +27,6 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    LogRocket.init('kpptgp/ciudadgps')
     await this.limpiarAsyncStorage();
     await this.getFont();
     await this.getLocationPermissions();
@@ -63,8 +61,17 @@ class App extends Component {
 
   getLocation = async () => {
     console.log('getLocation');
+
     try {
-      const location = await Location.getCurrentPositionAsync({});
+      let location = null;
+      if(Platform.OS == "android"){
+        location = await Location.getCurrentPositionAsync({});
+      }else{
+        location = await Location.getCurrentPositionAsync({
+          accuracy: Platform.OS == "android" ? Location.Accuracy.Low : Location.Accuracy.Lowest
+        });
+      }        
+
       console.log('Ubicación obtenida:', location);
       this.setState({location});
     } catch (error) {
