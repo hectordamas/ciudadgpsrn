@@ -1,10 +1,9 @@
-import { memo, useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, FlatList, Dimensions, Share, Image, Alert, StyleSheet, Modal, Pressable, ActivityIndicator } from 'react-native';
+import React, { memo, useState, useEffect } from 'react';
+import { View, TouchableOpacity, Text, FlatList, Dimensions, Share, Image, Alert, StyleSheet, Modal, Pressable } from 'react-native';
 import { icons, colores } from '../constants';
 const { EXPO_PUBLIC_API_URL } = process.env;
 import { isLiked } from "../functions";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Flow } from 'react-native-animated-spinkit'
 
 const SliderComponent = (props) => {
   const { images, commerce_id, user, like, dislike, auth, likes, commerce } = props;
@@ -14,7 +13,6 @@ const SliderComponent = (props) => {
   const minHeight = ScreenWidth * 0.5; // Definimos un alto mínimo relativo al ancho de la pantalla
   const [imageProperties, setImageProperties] = useState([]);
   const [containerHeight, setContainerHeight] = useState(maxHeight); // Altura inicial
-  const [loadingImages, setLoadingImages] = useState(new Array(images.length).fill(true));
   const [modalVisible, setModalVisible] = useState(false);
   const [imageActive, setImageActive] = useState(null);
 
@@ -64,39 +62,40 @@ const SliderComponent = (props) => {
     }
   }, [images]);
 
-  const renderItem = ({ item, index }) => (
-    <Pressable 
-      onPress={() => {
-        setImageActive({ uri: EXPO_PUBLIC_API_URL + item.uri });
-        setModalVisible(true);
-      }}
-      key={index} style={[styles.imageContainer, { height: imageProperties[index]?.height || maxHeight }]}>
-      
-      {loadingImages[index] && (
-        <View style={styles.loadingContainer}>
-          <Flow size={48} color="#FFF" />
-        </View>
-      )}
-      
-      <Image
-        source={{ uri: EXPO_PUBLIC_API_URL + item.uri }}
-        style={[styles.image, loadingImages[index] && { display: 'none' }]}
-        resizeMode={imageProperties[index]?.resizeMode || 'contain'}
-        onLoadEnd={() => {
-          let updatedLoadingImages = [...loadingImages];
-          updatedLoadingImages[index] = false;
-          setLoadingImages(updatedLoadingImages);
-        }}
-      />
-    </Pressable>
-  );
+  const ImageItem = ({ item, index }) => {
+    const image_url = `${EXPO_PUBLIC_API_URL}${item.uri}`;
+
+    const onPress = () => {
+      setImageActive({ uri: image_url });
+      setModalVisible(true);
+    };
+
+    return (
+      <Pressable 
+        onPress={onPress}
+        key={index}
+        style={[styles.imageContainer, { height: imageProperties[index]?.height || maxHeight }]}
+      >
+        <Image
+          source={{ uri: image_url }}
+          style={styles.image}
+          resizeMode={imageProperties[index]?.resizeMode || 'contain'}
+        />
+      </Pressable>
+    );
+  };
+
+  const renderItem = ({ item, index }) => {
+    return <ImageItem item={item} index={index} />;
+  };
 
   return (
     <View style={styles.container}>
       <Modal visible={modalVisible} transparent>
         <Pressable 
           onPressOut={() => setModalVisible(false)}
-          style={{backgroundColor: 'rgba(0,0,0,0.8)', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          style={{backgroundColor: 'rgba(0,0,0,0.8)', flex: 1, justifyContent: 'center', alignItems: 'center'}}
+        >
           <Image 
             style={{width: ScreenWidth * 0.9, height: ScreenWidth * 2}} 
             resizeMode='contain' 
@@ -178,15 +177,6 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: '100%',
-  },
-  loadingContainer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   shareButton: {
     position: 'absolute',
