@@ -608,7 +608,7 @@ class Commerce extends React.Component {
                     <MapView 
                       initialRegion={this.state.region} 
                       style={{ width: "100%", height: 300 }} 
-                      provider={PROVIDER_GOOGLE}
+                     // provider={PROVIDER_GOOGLE}
                     >
                       <MapViewDirections
                         origin={{latitude: this.state.userLatitude, longitude: this.state.userLongitude}}

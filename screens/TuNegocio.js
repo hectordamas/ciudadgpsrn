@@ -470,7 +470,7 @@ export default class TuNegocio extends React.Component{
                                                 latitudeDelta: 0.0100,
                                                 longitudeDelta: 0.0100,
                                             }}
-                                            provider={PROVIDER_GOOGLE}
+                                            //provider={PROVIDER_GOOGLE}
                                             >                                 
                                             <Marker
                                                draggable
