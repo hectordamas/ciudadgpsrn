@@ -66,11 +66,11 @@ const ProductsIndex = ({navigation, route}) => {
       
           if (result && result.products) {
             setProducts(result.products);
-            setLoaded(true);
           }
 
           if(result && result.commerce){
             setIsEnabled(result?.commerce?.enable ? true : false)
+            setLoaded(true);
           }
         } catch (error) {
           console.log(error);

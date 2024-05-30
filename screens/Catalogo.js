@@ -157,7 +157,7 @@ const Catalogo = ({navigation, route}) => {
                             <View style={{paddingHorizontal: 20,flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingVertical: 10}}>
                                 <View style={{flexDirection: 'row', alignItems: 'center'}}>
                                     <View style={{marginRight: 10}}>
-                                      <Image source={{uri: image.startsWith('http') ? image : EXPO_PUBLIC_API_URL + image}} style={{borderWidth: .2, borderColor: '#757575', borderRadius: 5, height: 80, width: 80, backgroundColor: '#e9e9e9'}} resizeMode="contain"/>
+                                      <Image source={{uri: image.startsWith('http') ? image : EXPO_PUBLIC_API_URL + image}} style={{borderWidth: .2, borderColor: '#757575', borderRadius: 5, height: 80, width: 80}} resizeMode="contain"/>
                                       <TouchableOpacity 
                                         style={{position: "absolute", right: 5, top: 5, padding: 5, backgroundColor: "rgba(0, 0, 0, 0.7)", borderRadius: 5}} 
                                         onPress={() => contexto.addToCart(item, commerce) }>

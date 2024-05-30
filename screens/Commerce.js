@@ -7,7 +7,7 @@ import Moment from 'moment';
 import 'moment/locale/es';
 import YoutubePlayer from "react-native-youtube-iframe";
 import { Contexto } from "../functions/Context";
-import { Appbar, Button, Chip, TextInput as CommentInput } from 'react-native-paper';
+import { Appbar, Button, TextInput as CommentInput } from 'react-native-paper';
 import { AntDesign, MaterialCommunityIcons, FontAwesome, FontAwesome5  } from '@expo/vector-icons';
 
 const {EXPO_PUBLIC_API_URL} = process.env
