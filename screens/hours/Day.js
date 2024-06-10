@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, memo } from "react";
 import { View, ScrollView, TextInput } from "react-native";
 import { Checkbox, Text, Button } from 'react-native-paper';
 import { colores } from "../../constants";
-import moment from 'moment/moment';
 import 'moment/locale/es';
 
 const Day = ({ item, commerceId, token }) => {
@@ -17,8 +16,8 @@ const Day = ({ item, commerceId, token }) => {
 
     const convertTo12Hour = (hour) => {
         const period = hour >= 12 ? 'PM' : 'AM';
-        const hour12 = hour % 12 || 12;
-        return { hour12: hour12.toString().padStart(2, '0'), period };
+        const hour12 = hour % 12 || null;
+        return { hour12: hour12?.toString().padStart(2, '0'), period };
     };
 
     const convertTo24Hour = (hour12, period) => {
@@ -83,10 +82,8 @@ const Day = ({ item, commerceId, token }) => {
     return (
         <View>
             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10, paddingHorizontal: 20, flex: 1}}>
-                <Text>{item.name}</Text>
+                <Text style={{fontFamily: 'inter-bold'}}>{item.name}</Text>
                 <Checkbox.Android
-                    label={item.name}
-                    labelStyle={{ fontFamily: 'inter-bold' }}
                     onPress={() => setSelected(!selected)}
                     status={selected ? 'checked' : 'unchecked'}
                 />
@@ -101,7 +98,7 @@ const Day = ({ item, commerceId, token }) => {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                         <TextInput
                             keyboardType="numeric"
-                            style={{ backgroundColor: '#e9e9e9', width: 30, textAlign: 'center' }}
+                            style={{ backgroundColor: '#e9e9e9', width: 40, textAlign: 'center' }}
                             value={hourOpen}
                             onChangeText={handleInputChange(setHourOpen, minuteOpenRef)}
                             placeholder="HH"
@@ -113,7 +110,7 @@ const Day = ({ item, commerceId, token }) => {
                         <TextInput
                             ref={minuteOpenRef}
                             keyboardType="numeric"
-                            style={{ backgroundColor: '#e9e9e9', width: 30, textAlign: 'center' }}
+                            style={{ backgroundColor: '#e9e9e9', width: 40, textAlign: 'center' }}
                             value={minuteOpen}
                             onChangeText={handleInputChange(setMinuteOpen)}
                             placeholder="MM"
@@ -135,7 +132,7 @@ const Day = ({ item, commerceId, token }) => {
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                         <TextInput
                             keyboardType="numeric"
-                            style={{ backgroundColor: '#e9e9e9', width: 30, textAlign: 'center' }}
+                            style={{ backgroundColor: '#e9e9e9', width: 40, textAlign: 'center' }}
                             value={hourClose}
                             onChangeText={handleInputChange(setHourClose, minuteCloseRef)}
                             placeholder="HH"
@@ -147,7 +144,7 @@ const Day = ({ item, commerceId, token }) => {
                         <TextInput
                             ref={minuteCloseRef}
                             keyboardType="numeric"
-                            style={{ backgroundColor: '#e9e9e9', width: 30, textAlign: 'center' }}
+                            style={{ backgroundColor: '#e9e9e9', width: 40, textAlign: 'center' }}
                             value={minuteClose}
                             onChangeText={handleInputChange(setMinuteClose)}
                             placeholder="MM"

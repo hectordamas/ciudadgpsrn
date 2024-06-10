@@ -1,5 +1,5 @@
 import React, { useContext, useCallback, useState, useEffect, memo } from "react";
-import {View, ScrollView, Switch, Modal, ActivityIndicator, Alert} from "react-native"
+import {View, ScrollView, Switch, Modal, ActivityIndicator, Alert, KeyboardAvoidingView, Platform} from "react-native"
 import { Appbar, Button, Text } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import { Contexto } from "../../functions/Context";
@@ -77,7 +77,10 @@ const HoursIndex = ({navigation, route}) => {
     }, [hourEnable])
 
     return (
-        <View style={{flex: 1, backgroundColor: '#fff'}}>
+        <KeyboardAvoidingView 
+            style={{flex: 1, backgroundColor: '#fff'}} 
+            behavior={Platform.OS == 'android' ? null : 'padding'}
+            keyboardVerticalOffset={60}>
             <Modal visible={processing} transparent>
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.5)'}}>
                     <ActivityIndicator color={'#fff'} size={60}/>
@@ -145,7 +148,7 @@ const HoursIndex = ({navigation, route}) => {
                     </Shadow>
                 </> : <Spinner />          
             }
-        </View>
+        </KeyboardAvoidingView>
     )
 }
 
