@@ -29,14 +29,116 @@ Archivos en el directorio raíz:
 
 Esta estructura organiza claramente los componentes y configuraciones necesarios para el funcionamiento de la aplicación.
 
-# 3. Carpeta Screens
+# 3. Carpeta `screens`
 
-## Subcarpetas de Screens
+## Subcarpetas de `screens`
 
 - **hours**: Manejo de horas y horarios.
 - **jobs**: Gestión de trabajos y ofertas laborales.
 - **pcategories**: Categorías personalizadas.
 - **products**: Pantallas relacionadas con productos.
+
+### index.js
+
+Este archivo es un punto central de entrada para los componentes de la aplicación, donde se importan y exportan módulos que representan diferentes pantallas o funcionalidades. A continuación, se detalla la lista de componentes importados y su propósito:
+
+### Componentes Importados
+
+1. **Home**
+    - Pantalla principal de la aplicación donde se puede acceder a varias funciones.
+2. **Commerce**
+    - Muestra detalles de un comercio específico, incluyendo su información y productos ofrecidos.
+3. **Favoritos**
+    - Permite al usuario ver una lista de los productos o comercios que ha marcado como favoritos.
+4. **MiCuenta**
+    - Pantalla de gestión de la cuenta del usuario donde puede ver y editar su información personal.
+5. **TuNegocio**
+    - Espacio donde los usuarios pueden gestionar su propio negocio y productos.
+6. **Login**
+    - Pantalla de inicio de sesión para que los usuarios accedan a su cuenta.
+7. **Register**
+    - Pantalla para que nuevos usuarios se registren en la aplicación.
+8. **Search**
+    - Funcionalidad de búsqueda que permite a los usuarios encontrar productos o comercios.
+9. **Category**
+    - Muestra productos categorizados bajo una categoría específica.
+10. **ShowCommerces**
+    - Pantalla que muestra una lista de todos los comercios disponibles.
+11. **Anuncios**
+    - Espacio para visualizar anuncios relevantes o promociones.
+12. **Comentarios**
+    - Permite a los usuarios ver y dejar comentarios sobre productos o servicios.
+13. **PaymentScreen**
+    - Pantalla dedicada a gestionar el proceso de pago.
+14. **OnboardingScreen**
+    - Proceso de bienvenida que guía a los nuevos usuarios a través de la aplicación.
+15. **Categories**
+    - Muestra una lista de categorías de productos.
+16. **Edit**
+    - Pantalla para editar detalles de la cuenta o productos.
+17. **ComerciosAsociados**
+    - Muestra comercios asociados que pueden ser relevantes para el usuario.
+18. **Soporte**
+    - Espacio donde los usuarios pueden obtener asistencia o ayuda.
+19. **Stories**
+    - Muestra historias o contenido visual que los usuarios pueden explorar.
+20. **Jobs**
+    - Pantalla que muestra la lista de empleos disponibles.
+21. **Job**
+    - Muestra detalles sobre un trabajo específico.
+22. **Cart**
+    - Pantalla del carrito de compras donde se visualizan los productos seleccionados.
+23. **Checkout**
+    - Proceso de finalización de compra.
+24. **ProductsIndex**
+    - Muestra una lista de productos disponibles.
+25. **ProductsCreate**
+    - Pantalla para crear un nuevo producto.
+26. **ProductsEdit**
+    - Permite editar detalles de un producto existente.
+27. **ProductShow**
+    - Muestra información detallada sobre un producto específico.
+28. **JobsIndex**
+    - Lista de trabajos disponibles para los usuarios.
+29. **JobsCreate**
+    - Pantalla para crear un nuevo trabajo.
+30. **JobsEdit**
+    - Permite editar detalles de un trabajo existente.
+31. **JobsCommerce**
+    - Muestra trabajos relacionados con comercios específicos.
+32. **SearchJobs**
+    - Funcionalidad para buscar empleos.
+33. **ViewReport**
+    - Muestra reportes de visitas y datos analíticos relevantes.
+34. **Catalogo**
+    - Pantalla que presenta un catálogo de productos o servicios.
+35. **HoursIndex**
+    - Muestra un listado de horarios relacionados con comercios o servicios.
+36. **BirthAndGender**
+    - Pantalla para recopilar información sobre la fecha de nacimiento y género de los usuarios.
+37. **Thread**
+    - Espacio para conversaciones o hilos de discusión.
+38. **Questions**
+    - Pantalla que permite a los usuarios realizar preguntas y obtener respuestas.
+39. **PcategoryList**
+    - Muestra una lista de categorías de productos.
+40. **PcategoryCreate**
+    - Pantalla para crear una nueva categoría de productos.
+41. **PcategoryEdit**
+    - Permite editar detalles de una categoría existente.
+
+### Exportación de Componentes
+
+Al final del archivo, todos los componentes importados se exportan como un objeto. Esto permite que otros archivos de la aplicación puedan importar cualquiera de estos componentes fácilmente. Por ejemplo:
+
+```jsx
+import { Home, Login, Cart } from './path/to/index';
+
+```
+
+### Conclusión
+
+El archivo `index.js` es crucial para la organización de la aplicación, ya que centraliza la importación y exportación de los componentes, facilitando la gestión y el acceso a estos a lo largo del proyecto.
 
 ### Anuncios.js
 
@@ -473,3 +575,879 @@ El componente `Home` es una pantalla principal de una aplicación móvil constru
 2. **Gestión de Errores**: Considera agregar manejo de errores para las solicitudes de datos, ya que en la actualidad no se gestionan posibles fallas en la carga.
 3. **Accesibilidad**: Asegúrate de que todos los elementos interactivos tengan etiquetas accesibles y consideraciones para usuarios con discapacidades.
 4. **Responsividad**: Las dimensiones se adaptan a diferentes pantallas utilizando `Dimensions`, lo que es útil para una buena experiencia en diversos dispositivos.
+
+### Job.js
+
+### Importaciones
+
+El componente importa varias dependencias necesarias:
+
+- **React y React Native**: Para crear el componente y manejar el estado.
+- **Components personalizados**: Como `Spinner`, que probablemente se utiliza para mostrar un indicador de carga.
+- **Componentes de `react-native-paper`**: Para proporcionar componentes de interfaz de usuario como `Appbar`, `Button`, `IconButton` y `Text`.
+- **MapView de `react-native-maps`**: Para mostrar un mapa con la ubicación de la oferta laboral.
+- **Moment**: Para manejar y mostrar fechas.
+- **Variables de entorno**: Para acceder a la URL de la API pública.
+
+### Estado del Componente
+
+El componente utiliza el hook `useState` para manejar el estado local:
+
+- `job`: Almacena la información de la oferta laboral.
+- `loaded`: Indica si la información se ha cargado.
+
+### Parámetros
+
+- `navigation`: Objeto de navegación proporcionado por React Navigation.
+- `route`: Contiene los parámetros enviados a la ruta, incluyendo `job_id`.
+
+### Funciones Principales
+
+1. **mapLink**: Abre Google Maps en la ubicación de la oferta laboral.
+    
+    ```jsx
+    const mapLink = () => Linking.openURL(`https://www.google.com/maps/search/?api=1&query=${job?.commerce.lat},${job?.commerce.lon}`);
+    ```
+    
+2. **shareJob**: Comparte la oferta laboral a través de un enlace.
+    
+    ```jsx
+    const shareJob = async () => {
+        // Lógica para compartir el trabajo
+    };
+    ```
+    
+3. **fetchData**: Recupera los detalles de la oferta laboral de la API y actualiza el estado.
+    
+    ```jsx
+    const fetchData = async () => {
+        // Lógica para obtener datos
+    };
+    ```
+    
+
+### Ciclo de Vida
+
+El componente utiliza `useFocusEffect` para ejecutar `fetchData` cada vez que la pantalla obtiene foco, asegurando que la información esté siempre actualizada.
+
+### Renderizado
+
+El componente renderiza la siguiente estructura:
+
+- **Encabezado**: Incluye un botón de regreso, título y un ícono de búsqueda.
+- **Mapa**: Muestra la ubicación de la oferta laboral en un mapa utilizando `MapView`.
+- **Detalles de la Oferta**:
+    - Nombre de la empresa y tiempo desde que se publicó la oferta.
+    - Título, descripción y dirección de la oferta.
+- **Opciones de Contacto**: Botones para contactar a la empresa a través de WhatsApp o correo electrónico.
+- **Botón para Ver Todas las Vacantes**: Navega a otra pantalla que muestra todas las ofertas de la empresa.
+- **Botón para Compartir**: Permite compartir la oferta laboral.
+
+### Carga de Datos
+
+Mientras se cargan los datos, se muestra un componente `Spinner` para indicar que la información se está obteniendo.
+
+### Estilos
+
+El componente utiliza estilos en línea y probablemente estilos importados para crear un diseño atractivo y responsivo.
+
+### Ejemplo de Uso
+
+El componente se puede utilizar dentro de una aplicación de React Native para mostrar detalles de ofertas laborales y permitir la interacción de los usuarios. Asegúrate de que se le pase un `job_id` a través de `route.params` para que funcione correctamente.
+
+```jsx
+<Job navigation={navigation} route={{ params: { job_id: '123' } }} />
+```
+
+Esta documentación debería ayudarte a entender mejor el funcionamiento y la estructura del componente `Job`. Si necesitas más información o ejemplos específicos, no dudes en preguntar.
+
+---
+
+## Jobs.js
+
+### Descripción
+
+El componente `Jobs` se encarga de mostrar una lista de empleos disponibles. Permite a los usuarios buscar empleos mediante un término de búsqueda y cargar más empleos a medida que se desplazan hacia abajo en la lista.
+
+### Props
+
+- **navigation**: Proporciona métodos para navegar entre pantallas en la aplicación.
+- **route**: Contiene los parámetros de la ruta, incluyendo el término de búsqueda.
+
+### Estado Local
+
+- **jobs**: Array que almacena la lista de empleos obtenidos desde la API.
+- **pageRef**: Referencia que mantiene el número de página actual para la paginación de los empleos.
+- **loaded**: Booleano que indica si los datos han sido cargados.
+- **count**: Número total de empleos disponibles en la respuesta de la API.
+
+### Funciones
+
+- **fetchData**: Función asíncrona que obtiene los empleos desde la API. Construye la URL según si hay un término de búsqueda y maneja la respuesta para actualizar el estado de `jobs` y `count`. También se encarga de incrementar `pageRef` para la paginación.
+- **useFocusEffect**: Hook que se ejecuta cuando el componente gana enfoque. Reinicia el estado de `jobs`, restablece la página a 1 y llama a `fetchData` para cargar los empleos cada vez que se vuelve a esta pantalla.
+
+### Renderizado
+
+- Muestra un encabezado con un botón de retroceso y un título "Bolsa de Empleos".
+- Incluye un campo de búsqueda donde los usuarios pueden tocar para navegar a la pantalla de búsqueda.
+- Si hay empleos disponibles, se muestra un `FlatList` que renderiza cada empleo en la lista, incluyendo el logo de la empresa, el título del empleo, el nombre del comercio y el tiempo desde que se publicó el empleo.
+- En la parte inferior de la lista, si hay más empleos por cargar, se muestra un `ActivityIndicator`. Si se han cargado todos los empleos, se muestra un mensaje indicando que se ha llegado al final.
+- Si no hay empleos, se muestra un mensaje y una imagen indicando que aún no hay empleos publicados.
+
+### Login.js
+
+El componente `Login` se utiliza para manejar la autenticación de usuarios en una aplicación React Native. Permite a los usuarios iniciar sesión utilizando su correo electrónico y contraseña, así como mediante autenticación social a través de Facebook, Google y Apple. También proporciona una opción para restablecer la contraseña en caso de olvido.
+
+## Estructura del Componente
+
+### Imports
+
+```jsx
+import React from 'react';
+import { View, Text, TextInput, Image, StyleSheet, TouchableOpacity, Alert, ScrollView, Platform } from 'react-native';
+import { colores, images } from '../constants';
+import { Spinner, ErrorHandling, FacebookLogin, GoogleLogin, AppleLogin, Reestablecer } from '../components';
+import * as WebBrowser from 'expo-web-browser';
+import * as Linking from 'expo-linking';
+import { Button, Appbar } from "react-native-paper";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Contexto } from '../functions/Context';
+import { KeyboardAvoidingView } from 'react-native';
+
+```
+
+### Estado del Componente
+
+El estado del componente se inicializa en el constructor y contiene las siguientes propiedades:
+
+- `email`: Almacena el correo electrónico ingresado por el usuario.
+- `error`: Indica si hubo un error en el inicio de sesión.
+- `password`: Almacena la contraseña ingresada por el usuario.
+- `starting`: Indica si el proceso de inicio de sesión está en curso.
+- `secureTextEntry`: Controla la visibilidad de la contraseña (oculta o muestra).
+- `access_token`: Almacena el token de acceso recibido al iniciar sesión.
+- `reestablecer`: Controla la visibilidad del componente de restablecimiento de contraseña.
+
+### Métodos Principales
+
+- **endsWith**: Verifica si el token termina con `#_=_` y lo reemplaza si es necesario.
+    
+    ```jsx
+    endsWith = (token) => token.endsWith('#_=_') ? token.replace('#_=_', '') : token
+    ```
+    
+- **parseUrlParams**: Analiza la URL y extrae los parámetros de consulta.
+    
+    ```jsx
+    parseUrlParams = (url) => {
+        const { queryParams } = Linking.parse(url);
+        return queryParams;
+    }
+    ```
+    
+- **verifyTokenAndAuth**: Verifica el token y autentica al usuario si el token es válido.
+    
+    ```jsx
+    verifyTokenAndAuth = (token) => {
+        // ...
+    }
+    
+    ```
+    
+- **openAuthSession**: Abre una sesión de autenticación y maneja el flujo de inicio de sesión social.
+    
+    ```jsx
+    openAuthSession = async (type) => {
+        // ...
+    }
+    
+    ```
+    
+- **getUserInfo**: Realiza una solicitud para obtener información del usuario utilizando el token de acceso.
+    
+    ```jsx
+    getUserInfo = async (token) => {
+        // ...
+    }
+    
+    ```
+    
+- **handleLogin**: Maneja el inicio de sesión enviando el correo electrónico y la contraseña al servidor y gestionando la respuesta.
+    
+    ```jsx
+    handleLogin = async () => {
+        // ...
+    }
+    
+    ```
+    
+
+### Renderizado
+
+El método `render` del componente devuelve una estructura JSX que incluye:
+
+- Un `Spinner` que se muestra mientras se está iniciando sesión.
+- Un `KeyboardAvoidingView` para mejorar la experiencia de usuario en dispositivos móviles al evitar que el teclado cubra los campos de entrada.
+- Un encabezado (`Appbar`) que contiene un botón de retroceso y el título "Inicia Sesión".
+- Un formulario con campos de entrada para el correo electrónico y la contraseña, junto con botones para iniciar sesión, registrarse, y opciones de inicio de sesión social (Facebook y Google).
+- Un enlace para restablecer la contraseña.
+
+```jsx
+render () {
+    // ...
+}
+
+```
+
+### Estilos
+
+Los estilos se definen utilizando `StyleSheet.create`, proporcionando un estilo coherente para los diferentes elementos del componente:
+
+```jsx
+const styles = StyleSheet.create({
+    // ...
+});
+
+```
+
+## Notas Adicionales
+
+- Asegúrate de que las variables de entorno (como `EXPO_PUBLIC_API_URL`) estén configuradas correctamente en tu entorno de desarrollo.
+- El componente es flexible para manejar diferentes métodos de autenticación y se puede extender fácilmente para agregar más opciones de inicio de sesión social en el futuro.
+
+### Mi Cuenta
+
+Este código es un componente de React Native llamado `MiCuenta`. Está diseñado para permitir a los usuarios administrar su cuenta, incluyendo la capacidad de actualizar su información de perfil, subir una foto de perfil y eliminar su cuenta. Utiliza varias bibliotecas, como `expo-image-picker` para seleccionar imágenes, `react-native-paper` para los componentes de UI y `react-native-shadow-2` para aplicar sombras a los elementos.
+
+### Componentes Clave
+
+1. **Estado Inicial**:
+    - Se define un estado inicial que incluye propiedades como `user`, `loaded`, `avatar`, `name`, `email`, `password`, `facebook_id`, `google_id`, `apple_id`, `error`, `processing`, y `visible`.
+2. **Métodos Principales**:
+    - `uploadProfileImage`: Este método se encarga de subir la imagen del perfil del usuario. Crea un objeto `FormData` para enviar la imagen al servidor. Si la subida es exitosa, actualiza el estado con la nueva información del usuario.
+    - `pickImage`: Utiliza `expo-image-picker` para permitir que el usuario seleccione una imagen de su galería. La imagen seleccionada se prepara y se envía a `uploadProfileImage`.
+    - `onSubmit`: Este método envía los cambios de información del usuario (nombre, email, contraseña) al servidor. Muestra una alerta al usuario si la actualización es exitosa o si hay errores.
+    - `getData`: Realiza una solicitud GET al servidor para obtener los datos del usuario y los carga en el estado del componente.
+    - `deleteAccount`: Envía una solicitud para eliminar la cuenta del usuario.
+    - `deleteAccountAlert`: Muestra una alerta para confirmar la eliminación de la cuenta del usuario.
+3. **Ciclo de Vida del Componente**:
+    - En `componentDidMount`, se agrega un listener que resetea el estado y obtiene los datos del usuario cada vez que el componente se enfoca.
+4. **Renderización**:
+    - El componente renderiza una vista que incluye un encabezado, un modal de carga y un formulario con campos para editar el nombre, email y contraseña del usuario. También incluye un botón para subir una foto de perfil y otro para eliminar la cuenta.
+5. **Uso de `KeyboardAvoidingView`**:
+    - Se utiliza `KeyboardAvoidingView` para ajustar la vista cuando el teclado está activo, mejorando la experiencia del usuario.
+6. **Condiciones de Renderizado**:
+    - Se muestra un indicador de carga mientras se obtienen los datos del usuario. Una vez cargados, se muestran los elementos de la interfaz de usuario.
+
+### Estilo y Diseño
+
+El código utiliza varios estilos para asegurarse de que la interfaz sea atractiva y funcional. Se utilizan componentes de `react-native-paper`, como `Button` y `TextInput`, que ofrecen un diseño consistente y accesible.
+
+### OnboardingScreen.js
+
+Este código define un componente llamado `OnboardingScreen`, que utiliza la biblioteca `react-native-app-intro-slider` para crear una serie de pantallas de introducción que permiten a los usuarios familiarizarse con las características de la aplicación CiudadGPS. Se utilizan iconos de `react-native-vector-icons/Ionicons` y estilos personalizados.
+
+### Componentes Clave
+
+1. **Importaciones**:
+    - Se importan las bibliotecas necesarias, incluyendo `React`, componentes de `react-native`, `AppIntroSlider`, y `Icon`.
+    - Se importan `images` y `colores` desde un archivo de constantes que probablemente define imágenes y paletas de colores para la aplicación.
+2. **Dimensiones**:
+    - Se obtienen las dimensiones de la ventana para ajustar el diseño según el tamaño de la pantalla del dispositivo.
+3. **Estilos**:
+    - Se definen estilos utilizando `StyleSheet.create`, incluyendo estilos para botones, títulos, subtítulos y las diapositivas.
+4. **Funciones de Renderizado de Botones**:
+    - `_renderNextButton`: Renderiza un botón para avanzar a la siguiente diapositiva con un ícono de flecha hacia adelante.
+    - `_renderDoneButton`: Renderiza un botón de "hecho" con un ícono de verificación.
+5. **Datos de las Diapositivas**:
+    - Se define un array `slides` que contiene los datos de cada diapositiva, incluyendo un título, un subtítulo, una imagen y un color de fondo.
+6. **Función para Renderizar Diapositivas**:
+    - `_renderItem`: Esta función toma un ítem (diapositiva) y renderiza su contenido, incluyendo la imagen, el logotipo de CiudadGPS, el título y el subtítulo.
+7. **Componente Principal**:
+    - `OnboardingScreen`: Este es el componente principal que utiliza `AppIntroSlider` para mostrar las diapositivas de introducción. Se pasan las funciones y datos relevantes, como `onDone`, que llama a la función `initialize` cuando el usuario completa el recorrido de introducción.
+
+### Diseño y Estilo
+
+El diseño es moderno y atractivo, con un enfoque en la usabilidad. Las imágenes y los textos están bien organizados para captar la atención del usuario y proporcionar información clara sobre la aplicación.
+
+- **Colores**: Se utilizan colores definidos en el objeto `colores` para asegurar que el estilo sea consistente con la identidad de la marca.
+- **Iconos**: Se utilizan iconos para mejorar la experiencia del usuario y hacer que la navegación sea más intuitiva.
+
+### Funcionamiento
+
+Cuando el usuario inicia la aplicación, verá las pantallas de introducción en orden. Al llegar a la última diapositiva y presionar el botón "hecho", se ejecutará la función `initialize`, que puede llevar al usuario a la pantalla principal de la aplicación.
+
+### PaymentScreen.js
+
+Este código implementa una pantalla de pago donde los usuarios pueden ingresar los datos de su tarjeta de crédito para completar un proceso de registro. A continuación se describen las secciones y funciones principales del componente `PaymentScreen`.
+
+### Componentes Clave
+
+1. **Importaciones**:
+    - Se importan módulos de React, componentes de `react-native` y componentes personalizados como `Processing`, `Success`, `Error` y `CreditCardInput`.
+    - Se extraen imágenes, iconos y colores de un archivo de constantes.
+2. **Estado Inicial**:
+    - Se define un estado inicial (`initialState`) que incluye propiedades como `processing`, `loading`, `success`, `error`, y los campos de la tarjeta de crédito (`cvc`, `expiry`, `name`, `number`, `valid`).
+3. **Métodos de la Clase**:
+    - **`pay`**: Este método se encarga de gestionar el proceso de pago. Valida los datos ingresados y realiza una solicitud a la API de Stripe para crear un `paymentIntent`.
+        - Si los datos son inválidos o incompletos, se muestra una alerta correspondiente.
+        - Si la validación es exitosa, se envía la información de la tarjeta de crédito a la API y se gestiona el estado de éxito o error basado en la respuesta de la API.
+    - **`componentDidMount`**: Este método se ejecuta cuando el componente se monta. Aquí se agrega un listener para resetear el estado cada vez que la pantalla vuelve a estar en foco.
+    - **`componentDidUpdate`**: Método que imprime el estado actual en la consola cada vez que se actualiza.
+4. **Renderizado**:
+    - **Éxito/Error**: Si el pago es exitoso o hay un error, se renderizan los componentes `Success` o `Error`, respectivamente.
+    - **Interfaz de Usuario**:
+        - Se muestra una vista principal con un fondo blanco.
+        - Se incluye un componente `Processing` que se muestra mientras se procesa el pago.
+        - Se proporciona un botón para regresar a la pantalla anterior.
+        - Se incluye un `ScrollView` que permite ingresar los detalles de la tarjeta de crédito usando el componente `CreditCardInput`.
+        - Un botón de "Aceptar" que, al presionarlo, llama al método `pay` para procesar el pago.
+
+### Funcionamiento
+
+Cuando el usuario navega a la pantalla de pago:
+
+1. Se presenta un mensaje informativo sobre la cantidad a debitar.
+2. Se solicita que ingrese los datos de su tarjeta de crédito.
+3. Al hacer clic en el botón "Aceptar", se validan los datos y se realiza la transacción a través de la API de Stripe.
+4. Dependiendo del resultado, se muestra una pantalla de éxito o un mensaje de error.
+
+### Questions.js
+
+### Descripción
+
+El componente `Questions` permite a los usuarios enviar preguntas relacionadas con un comercio específico. Muestra las preguntas ya enviadas y permite a los usuarios registrados formular nuevas preguntas.
+
+### Props
+
+- **route**: Contiene los parámetros de navegación. Se espera que tenga el siguiente parámetro:
+    - **commerceId**: El ID del comercio para el cual se están enviando las preguntas.
+- **navigation**: Proporciona acceso a las funciones de navegación de React Navigation.
+
+### Estado
+
+El componente utiliza el siguiente estado interno:
+
+- **loaded**: Un booleano que indica si las preguntas han sido cargadas.
+- **questions**: Un arreglo que almacena las preguntas obtenidas del comercio.
+- **message**: Una cadena que contiene el texto de la pregunta que el usuario desea enviar.
+- **processing**: Un booleano que indica si se está procesando una solicitud (por ejemplo, al enviar una pregunta).
+
+### Contexto
+
+El componente utiliza un contexto (`Contexto`) que proporciona información sobre el usuario actual y su token de autorización.
+
+### Funciones Principales
+
+1. **handleSubmit**:
+    - Envía una nueva pregunta al comercio.
+    - Realiza validaciones para asegurarse de que el mensaje no esté vacío.
+    - Muestra una alerta de éxito o error según el resultado de la operación.
+2. **getQuestionsCommerce**:
+    - Realiza una solicitud para obtener las preguntas ya enviadas al comercio especificado.
+    - Actualiza el estado con las preguntas obtenidas.
+3. **handleMount**:
+    - Función que se ejecuta cuando el componente se monta. Llama a `getQuestionsCommerce` para cargar las preguntas.
+
+### Efectos
+
+- Utiliza `useFocusEffect` de React Navigation para cargar las preguntas cada vez que el componente obtiene foco.
+
+### Renderizado
+
+El componente renderiza:
+
+- Una barra de encabezado que permite regresar a la pantalla anterior.
+- Una lista de preguntas en un `ScrollView`. Si no hay preguntas, se muestra un mensaje indicando que no hay preguntas disponibles.
+- Un campo de entrada para que los usuarios registrados puedan enviar nuevas preguntas, junto con un botón de envío.
+
+### Ejemplo de Uso
+
+```jsx
+<Questions
+    route={{ params: { commerceId: '12345' } }}
+    navigation={navigation}
+/>
+
+```
+
+### Notas
+
+- Se requiere que el usuario esté autenticado para poder enviar preguntas.
+- Se utilizan estilos de `react-native-paper` para una mejor presentación visual.
+
+Aquí tienes una versión traducida de la sección de la documentación del componente `Register` en español:
+
+---
+
+### Register.js
+
+El componente `Register` es una pantalla de registro que permite a los usuarios crear una nueva cuenta. Utiliza `React Native` y varios componentes de la biblioteca de `React Native Paper`. A continuación se detalla su implementación y funcionamiento.
+
+### Estructura del Componente
+
+1. **Imports**: El componente importa varias bibliotecas y componentes necesarios, incluyendo:
+    - `React` y componentes básicos como `View`, `Text`, `TextInput`, `Image`, `TouchableOpacity`, etc.
+    - Componentes personalizados como `Spinner`, `ErrorHandling`, `FacebookLogin`, `GoogleLogin`, y `AppleLogin`.
+    - `WebBrowser` y `Linking` de `expo` para manejar la autenticación.
+    - `Button` y `Appbar` de `react-native-paper` para botones y la barra de navegación.
+    - Iconos de `MaterialCommunityIcons` para mostrar un icono de visibilidad de contraseña.
+2. **Estado del Componente**:
+    - Se inicializa el estado del componente con propiedades como `error`, `name`, `email`, `password`, `secureTextEntry`, `starting`, y `token`.
+3. **Métodos**:
+    - **endsWith**: Verifica si un token termina con `#_=_` y lo reemplaza.
+    - **parseUrlParams**: Analiza los parámetros de la URL.
+    - **verifyTokenAndAuth**: Verifica el token de autenticación y obtiene la información del usuario.
+    - **openAuthSession**: Abre una sesión de autenticación en el navegador.
+    - **getUserInfo**: Obtiene la información del usuario a través de una llamada API.
+    - **register**: Envía una solicitud de registro a la API.
+4. **Renderizado**:
+    - Si hay un error, se muestra un componente de manejo de errores.
+    - Si la solicitud está en progreso, se muestra un `Spinner` indicando que se está registrando al usuario.
+    - En la vista de registro:
+        - Se muestra una barra de navegación con un botón para regresar.
+        - Se presenta un formulario que incluye campos para el nombre, correo electrónico y contraseña.
+        - Se proporciona un botón para registrarse y opciones para iniciar sesión con redes sociales (Facebook, Google, y Apple).
+
+### Search.js
+
+El componente `Search` es una interfaz de usuario para permitir a los usuarios buscar comercios y categorías. Utiliza React Native y la biblioteca `react-native-paper` para ofrecer una experiencia fluida y moderna.
+
+### Propiedades
+
+Este componente no recibe propiedades explícitas, pero utiliza la navegación proporcionada por React Navigation a través de `this.props.navigation`.
+
+### Estado Inicial
+
+El componente mantiene un estado interno que se define en `initialState`:
+
+- `text`: El texto ingresado por el usuario en el campo de búsqueda.
+- `commerces`: Una lista de comercios obtenidos de la API.
+- `categories`: Una lista de categorías obtenidas de la API.
+- `tags`: Una lista de etiquetas, aunque no se usa en la implementación actual.
+- `searching`: Un booleano que indica si se está realizando una búsqueda.
+- `queryResult`: Almacena el resultado de la búsqueda.
+- `error`: Indica si ocurrió un error durante la búsqueda.
+
+### Métodos
+
+- **`onChangeText(text)`**: Se activa cuando el usuario cambia el texto en el campo de búsqueda. Inicia una búsqueda con un retraso de 200 ms después de que el usuario deja de escribir.
+- **`onSubmit()`**: Se llama cuando el usuario envía la búsqueda (presiona "Buscar" o la tecla de retorno). Navega a la pantalla `ShowCommerces` con las coordenadas y el texto de búsqueda.
+- **`componentDidMount()`**: Se ejecuta cuando el componente se monta. Configura un listener para reiniciar el estado al volver a la pantalla de búsqueda.
+
+### Renderizado
+
+El componente renderiza lo siguiente:
+
+1. **Encabezado de la Aplicación**: Utiliza `Appbar` de `react-native-paper` para el encabezado con un botón de retroceso y el título "Buscar".
+2. **Campo de Búsqueda**: Un `TextInput` donde los usuarios pueden ingresar texto para buscar. Hay un botón que activa la búsqueda.
+3. **Resultados de Búsqueda**:
+    - Si el texto ingresado no está vacío, se muestra una lista de categorías y comercios que coinciden con la búsqueda.
+    - Cada categoría y comercio se puede presionar para navegar a su respectiva pantalla.
+    - Si no se encuentran resultados, se muestra una imagen de "no encontrado".
+4. **Indicador de Carga**: Mientras se procesa la búsqueda, se muestra un `ActivityIndicator`.
+5. **Mensajes de Búsqueda**: Mensajes orientativos para el usuario según el estado de la búsqueda.
+
+### Estilos
+
+Se aplican varios estilos a través de propiedades inline y estilos de componente para asegurar una presentación adecuada en diferentes dispositivos. Se utiliza `SafeAreaView` para garantizar que el contenido no se superponga con áreas no seguras.
+
+### Dependencias
+
+- `react-native-paper`: Para el componente de barra de aplicación.
+- `react-native-vector-icons`: Para los íconos utilizados en la interfaz.
+- `react-native`: Para los componentes básicos de la interfaz.
+
+### ShowCommerces.js
+
+El componente `ShowCommerces` es un componente de React Native que se encarga de mostrar una lista de comercios en función de la ubicación del usuario y los criterios de búsqueda proporcionados. Este componente permite la búsqueda, la clasificación y la visualización de los comercios en diferentes vistas (lista o mapa).
+
+### Props
+
+- `route`: Objeto que contiene los parámetros de navegación. Incluye:
+    - `params`:
+        - `text`: Texto de búsqueda inicial.
+        - `destacados`: Booleano que indica si se deben mostrar comercios destacados.
+- `navigation`: Propiedades de navegación que permiten la navegación hacia otras pantallas.
+
+### Estado
+
+- `commerceData`: Array que contiene los datos de los comercios.
+- `searching`: Booleano que indica si se está realizando una búsqueda.
+- `count`: Número total de comercios encontrados.
+- `page`: Número de página actual para la paginación.
+- `masResultados`: Booleano que indica si hay más resultados para cargar.
+- `orderBy`: Criterio por el cual se ordenan los resultados (por distancia o calificación).
+- `error`: Booleano que indica si se ha producido un error durante la búsqueda.
+- `text`: Texto de búsqueda actual.
+- `destacados`: Booleano que indica si se están mostrando los comercios destacados.
+- `newResults`: Booleano que indica si hay nuevos resultados disponibles.
+- `location`: Ubicación actual del usuario.
+- `view`: Tipo de vista actual (lista o mapa).
+- `orderModal`: Booleano que indica si el modal de ordenación es visible.
+- `viewModal`: Booleano que indica si el modal de vista es visible.
+- `latPromedio`, `lonPromedio`, `latDeltaPromedio`, `lonDeltaPromedio`: Parámetros relacionados con la ubicación media y el rango de distancia para la visualización de los comercios en el mapa.
+
+### Métodos
+
+- `getCommerces()`: Método asincrónico que obtiene los comercios desde una API en función de la ubicación y los parámetros de búsqueda.
+- `onEndReached()`: Método que se llama cuando se alcanza el final de la lista, cargando más resultados si están disponibles.
+- `fetchData()`: Método que reinicia el estado de los datos y vuelve a cargar los comercios.
+- `reload()`: Método que actualiza la ubicación del usuario y recarga los datos.
+- `handleFilter(orderParam)`: Método que maneja la ordenación de los comercios según el parámetro proporcionado.
+- `handleView(viewType)`: Método que maneja el tipo de vista seleccionada (lista o mapa).
+- `handleVisibleOrderModal()`: Método que muestra u oculta el modal de ordenación.
+- `handleVisibleViewModal()`: Método que muestra u oculta el modal de vista.
+
+### Renderizado
+
+El componente renderiza:
+
+- Un modal para seleccionar el criterio de ordenación de los comercios.
+- Un modal para seleccionar el tipo de vista (lista o mapa).
+- Una barra de navegación que muestra el número de comercios encontrados o el estado de búsqueda.
+- Una lista de comercios que se pueden mostrar en función del estado del componente.
+
+### Soporte.js
+
+El componente `Soporte` permite a los usuarios enviar un ticket de soporte a la aplicación. Este formulario incluye campos para el nombre, correo electrónico, asunto, descripción y la opción de adjuntar una imagen.
+
+### Estado
+
+El componente mantiene el siguiente estado:
+
+- **loaded**: Indica si los datos del usuario han sido cargados.
+- **processing**: Indica si se está procesando el envío del ticket.
+- **email**: Almacena el correo electrónico del usuario.
+- **name**: Almacena el nombre del usuario.
+- **subject**: Almacena el asunto del ticket.
+- **description**: Almacena la descripción del problema.
+- **image**: Almacena la imagen adjunta (si existe).
+
+### Métodos
+
+- **componentDidMount**: Se ejecuta al montar el componente, cargando el correo electrónico y el nombre del usuario desde el contexto.
+- **pickImage**: Permite al usuario seleccionar una imagen de su galería. Utiliza el módulo `ImagePicker` de `expo-image-picker` para acceder a la biblioteca de imágenes. Si el usuario selecciona una imagen, se actualiza el estado con la información de la imagen seleccionada.
+- **handleSubmit**: Se ejecuta al enviar el formulario. Crea un objeto `FormData` con los datos del formulario y envía una solicitud POST a la API para crear un nuevo ticket de soporte. Muestra un modal de carga mientras se procesa la solicitud y notifica al usuario cuando el ticket se ha creado con éxito.
+
+### Renderizado
+
+- **Modal de carga**: Se muestra un modal con un indicador de carga mientras se envía el ticket.
+- **Encabezado de la barra de aplicación**: Contiene un botón de retroceso y un título que indica que se está creando un ticket.
+- **Formulario de entrada**:
+    - Campos para el correo electrónico, nombre, asunto y descripción.
+    - Un botón para adjuntar imágenes.
+    - Un texto que permite a los usuarios contactar directamente al soporte por correo electrónico.
+- **Botón de envío**: Un botón que permite enviar el ticket.
+
+### Stories.js
+
+El componente `Stories` permite visualizar y gestionar historias de un local en la aplicación. Proporciona una interfaz para mostrar una lista de historias y eliminar las que el usuario seleccione.
+
+### Propiedades
+
+- **route**: Este objeto contiene información sobre la ruta actual, incluyendo parámetros que son necesarios para la funcionalidad del componente.
+    - **params**:
+        - **stories**: Un arreglo de historias que se mostrarán en la lista.
+        - **afterDestroyStory**: Función que se ejecuta después de que se elimina una historia.
+
+### Estado
+
+- **processing**: Un booleano que indica si se está procesando una operación (como la eliminación de una historia). Se utiliza para mostrar un indicador de carga.
+
+### Métodos
+
+- **destroyStory(story_id)**:
+    - **Descripción**: Envía una solicitud para eliminar una historia específica.
+    - **Parámetros**:
+        - `story_id`: El identificador de la historia que se desea eliminar.
+    - **Uso**: Llama a este método al presionar el botón de eliminar en una historia. Se muestra un modal de carga mientras se procesa la solicitud. Una vez completada, se muestra un mensaje de confirmación y se regresa a la pantalla anterior.
+
+### Renderizado
+
+- El componente renderiza un encabezado con el título "Historias" y un botón de retroceso.
+- Si hay historias disponibles, se muestran en una lista utilizando `FlatList`. Cada elemento de la lista incluye:
+    - Una imagen de la historia.
+    - Un tiempo que indica cuándo fue creada la historia.
+    - Un botón para eliminar la historia, que muestra una alerta de confirmación antes de proceder a la eliminación.
+- Si no hay historias disponibles, se muestra un mensaje informando que no se han subido historias en las últimas 24 horas, junto con una imagen representativa.
+
+### Thread.js
+
+El componente `Thread` se utiliza para mostrar un hilo de preguntas y respuestas en una aplicación React Native. Permite a los usuarios ver una pregunta, sus respuestas, y enviar nuevas respuestas. Además, proporciona la funcionalidad para eliminar preguntas si el usuario tiene los permisos adecuados.
+
+### Props
+
+- **route**: Contiene parámetros de navegación, incluyendo `questionId`, que se usa para cargar la pregunta específica.
+- **navigation**: Proporciona funciones de navegación para permitir a los usuarios navegar entre pantallas.
+
+### Estado Interno
+
+- **loaded**: Indica si los datos han sido cargados.
+- **question**: Almacena la pregunta cargada.
+- **answers**: Contiene las respuestas a la pregunta.
+- **users**: Almacena los usuarios que han respondido a la pregunta.
+- **commerce**: Almacena información sobre el comercio relacionado con la pregunta.
+- **answerMessage**: Almacena el mensaje de respuesta que el usuario está escribiendo.
+- **processing**: Indica si se está procesando una acción (como enviar una respuesta o eliminar una pregunta).
+
+### Funciones
+
+- **getQuestion**: Realiza una solicitud a la API para obtener la pregunta y sus respuestas.
+- **handleSubmitAnswer**: Envía la respuesta escrita por el usuario a la API y actualiza el estado con la nueva respuesta.
+- **handleDestroy**: Elimina la pregunta si el usuario tiene los permisos necesarios, mostrando una alerta de confirmación antes de proceder.
+- **isCommerceAdmin**: Verifica si el usuario actual es un administrador del comercio.
+- **isQuestionOwner**: Verifica si el usuario actual es el propietario de la pregunta.
+- **canAnswer**: Verifica si el usuario puede responder a la pregunta, basado en sus permisos.
+
+### Efectos
+
+Utiliza el hook `useFocusEffect` para cargar la pregunta y sus respuestas cada vez que el componente se enfoca, asegurando que los datos estén siempre actualizados.
+
+### Renderizado
+
+- **Modal de carga**: Muestra un indicador de actividad mientras se procesan las acciones.
+- **Barra de navegación**: Permite al usuario regresar a la pantalla anterior.
+- **Pregunta**: Muestra la pregunta cargada, junto con el avatar del usuario que la hizo y el tiempo desde su creación.
+- **Respuestas**: Muestra una lista de respuestas utilizando el componente `AnswerItem`.
+- **Formulario de respuesta**: Permite al usuario escribir y enviar su respuesta si tiene los permisos necesarios.
+
+### TuNegocio.js
+
+El componente `TuNegocio` es una interfaz de usuario diseñada para permitir a los usuarios registrar un nuevo negocio. Este componente incluye la recolección de datos importantes, como información del negocio, detalles del propietario, datos de contacto y selección de categorías.
+
+### Props
+
+El componente no recibe props externas, ya que utiliza el contexto para obtener la información del usuario y la ubicación.
+
+### Estado Inicial
+
+El estado inicial del componente incluye varias propiedades, entre las cuales se destacan:
+
+- `success`: Indica si el registro se ha completado con éxito.
+- `error`: Indica si hubo un error durante el proceso de registro.
+- `processing`: Indica si el formulario está en proceso de envío.
+- `loaded`: Indica si los datos requeridos han sido cargados.
+- `multiselectVisible`: Controla la visibilidad del selector múltiple de categorías.
+- `name`: Nombre del negocio.
+- `user_name`: Nombre del propietario.
+- `user_lastname`: Apellido del propietario.
+- `user_email`: Correo electrónico del propietario.
+- `telephone`: Número de teléfono.
+- `info`: Detalles del establecimiento.
+- `logo`: Logo del negocio.
+- `photos`: Fotografías del establecimiento.
+- `selectedCategories`: Categorías seleccionadas.
+- `lat` y `lon`: Coordenadas geográficas del negocio.
+
+### Métodos
+
+- **`componentDidMount`**: Este método se ejecuta cuando el componente se monta. Se encarga de cargar las categorías disponibles desde la API y establecer la ubicación del usuario.
+- **`handleSubmit`**: Este método se invoca al enviar el formulario. Verifica que todos los campos obligatorios estén completos y envía los datos a la API para registrar el negocio. Maneja la respuesta y muestra alertas en caso de error.
+- **`handleDraggableMarker`**: Permite actualizar las coordenadas del negocio mediante un marcador en el mapa.
+- **`pickImage`**: Permite seleccionar una imagen para el logo del negocio desde la galería.
+- **`pickMultipleImages`**: Permite seleccionar múltiples imágenes para las fotos del establecimiento.
+- **`handleVisible`**: Controla la visibilidad del selector múltiple de categorías.
+- **`handleSetSelectedCategories`**: Actualiza el estado con las categorías seleccionadas.
+- **`updateTagState`**: Actualiza el estado con las etiquetas que el usuario desee agregar.
+
+### Integración
+
+Este componente se integra en la aplicación utilizando el contexto para acceder a la ubicación del usuario y los datos de autenticación. Asegúrate de que el contexto esté correctamente configurado y que la API de backend esté disponible para manejar las solicitudes.
+
+### ViewReport.js
+
+El componente `ViewReport` es una vista que muestra un informe de visitas para un comercio específico. Utiliza un gráfico de líneas para representar las visitas del primer y segundo semestre del año. A continuación se describen sus características, estado y funciones principales.
+
+## Importaciones
+
+```jsx
+import React, { useState, useCallback, useEffect, useContext } from "react";
+import { View, Image, Text, ScrollView, StatusBar } from 'react-native';
+import { LineChart, Spinner } from "../components";
+import { useFocusEffect } from "@react-navigation/native";
+import { NumericFormat } from 'react-number-format';
+import { Contexto } from "../functions/Context";
+import { Appbar } from "react-native-paper";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+```
+
+## Estado del Componente
+
+El componente utiliza varios estados locales para almacenar datos:
+
+- **primerSemestre**: Array de nombres de meses del primer semestre.
+- **dataPrimerSemestre**: Datos para el gráfico del primer semestre.
+- **segundoSemestre**: Array de nombres de meses del segundo semestre.
+- **dataSegundoSemestre**: Datos para el gráfico del segundo semestre.
+- **visitasTotales**: Número total de visitas.
+- **likes**: Número de favoritos.
+- **loaded**: Booleano que indica si los datos han sido cargados.
+- **commerce**: Información sobre el comercio.
+- **commerce_id**: ID del comercio recibido como parámetro de ruta.
+
+## Funciones Principales
+
+### fetchData
+
+```jsx
+const fetchData = async () => {
+  await fetch(`${EXPO_PUBLIC_API_URL}/api/auth/visits?commerce_id=${commerce_id}`, {
+      method: 'GET',
+      headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'Authorization': contexto?.token
+      }
+  })
+  .then(res => res.json())
+  .then((res) => {
+      console.log(res);
+      setVisitasTotales(res.visitasTotales);
+      setLikes(res.likes);
+      setDataSegundoSemestre(res.segundoSemestreData);
+      setDataPrimerSemestre(res.primerSemestreData);
+      setCommerce(res.commerce);
+  })
+  .catch(e => console.log(e));
+}
+
+```
+
+Esta función se encarga de realizar una solicitud GET al servidor para obtener datos de visitas y favoritos del comercio especificado por `commerce_id`. Actualiza los estados locales con los datos recibidos.
+
+### useFocusEffect
+
+```jsx
+useFocusEffect(useCallback(() => {
+    setLoaded(false);
+    fetchData();
+}, [commerce_id]));
+
+```
+
+Se utiliza para cargar los datos cada vez que la vista entra en foco. Cuando la vista se vuelve activa, se restablece `loaded` a `false` y se llama a `fetchData`.
+
+### useEffect
+
+```jsx
+useEffect(() => {
+    dataPrimerSemestre?.length > 0 && setLoaded(true);
+}, [dataPrimerSemestre]);
+
+```
+
+Este efecto se ejecuta cuando `dataPrimerSemestre` cambia. Si hay datos en el primer semestre, actualiza `loaded` a `true`, lo que indica que los datos se han cargado.
+
+## Renderización
+
+La interfaz de usuario se compone de:
+
+- Un encabezado (`Appbar.Header`) con un botón de retroceso y el título "Reporte de Visitas".
+- Un componente `ScrollView` que contiene la información del comercio, incluyendo:
+    - Logo del comercio.
+    - Total de visitas y favoritos, utilizando `NumericFormat` para formatear los números.
+    - Gráficos de líneas para el primer y segundo semestre, representados por el componente `LineChart`.
+
+Si `loaded` es `false`, se muestra un componente `Spinner` que indica que los datos se están cargando.
+
+## Estilos
+
+Los estilos están implementados inline y se utilizan para definir la apariencia de la vista, incluyendo:
+
+- Colores de fondo.
+- Espaciados y márgenes.
+- Estilos de texto y contenedores.
+
+## Exportación
+
+```jsx
+export default ViewReport;
+```
+
+El componente se exporta como el valor predeterminado para su uso en otras partes de la aplicación.
+
+---
+
+## 4. Carpeta `constants`
+
+La carpeta `constants` es un lugar designado para almacenar valores constantes que son utilizados en toda la aplicación. Al mantener estos valores centralizados, se mejora la mantenibilidad del código y se facilita su modificación si es necesario.
+
+### index.js
+
+El archivo `index.js` en la carpeta `constants` actúa como un punto de entrada que agrupa y exporta todos los valores constantes de la carpeta. Esto simplifica la importación de constantes en otras partes de la aplicación, permitiendo un acceso más fácil y organizado a las diferentes constantes que se utilizan a lo largo del proyecto.
+
+### Estructura del Archivo
+
+El archivo `index.js` contiene las siguientes importaciones y exportaciones:
+
+```jsx
+import icons from "./Icons";
+import images from "./Images";
+import { colores, tamaños, fuentes } from "./Theme";
+
+export { icons, images, colores, tamaños, fuentes };
+
+```
+
+### Descripción de las Importaciones
+
+1. **`import icons from "./Icons";`**
+    - Importa un conjunto de íconos definidos en el archivo `Icons.js`. Estos íconos pueden ser utilizados en la interfaz de usuario para mejorar la experiencia visual y funcional de la aplicación.
+2. **`import images from "./Images";`**
+    - Importa un conjunto de imágenes definidas en el archivo `Images.js`. Estas imágenes pueden incluir logotipos, ilustraciones, y cualquier otra gráfica que se requiera en la aplicación.
+3. **`import { colores, tamaños, fuentes } from "./Theme";`**
+    - Importa tres grupos de constantes desde el archivo `Theme.js`:
+        - **`colores`**: Define los colores que se utilizan en la aplicación, como el color de fondo, texto, y otros elementos de diseño.
+        - **`tamaños`**: Define los tamaños utilizados en la aplicación, como márgenes, paddings y dimensiones de componentes.
+        - **`fuentes`**: Define las fuentes tipográficas utilizadas en la aplicación, asegurando consistencia en los estilos de texto.
+
+### Descripción de las Exportaciones
+
+El archivo exporta los siguientes elementos:
+
+- **`icons`**: Un objeto que contiene todos los íconos importados desde el archivo `Icons.js`. Permite acceder a los íconos en cualquier parte de la aplicación.
+- **`images`**: Un objeto que contiene todas las imágenes importadas desde el archivo `Images.js`. Facilita el uso de imágenes en toda la aplicación.
+- **`colores`**: Un objeto que contiene todas las constantes de color definidas en `Theme.js`. Se puede usar para aplicar estilos de color coherentes en los componentes.
+- **`tamaños`**: Un objeto que contiene todas las constantes de tamaño definidas en `Theme.js`. Permite utilizar dimensiones estándar en toda la aplicación.
+- **`fuentes`**: Un objeto que contiene todas las constantes de fuente definidas en `Theme.js`. Asegura que se utilicen las mismas fuentes en toda la interfaz de usuario.
+
+### Conclusión
+
+El archivo `index.js` en la carpeta `constants` es fundamental para la organización y la eficiencia de las importaciones en la aplicación. Actúa como un punto central para acceder a todos los íconos, imágenes, colores, tamaños y fuentes, facilitando la consistencia y mantenibilidad del código en el desarrollo de la interfaz de usuario.
+
+## 5. Carpeta `functions`
+
+La carpeta `functions` contiene funciones reutilizables que se utilizan en diferentes partes de la aplicación. Este enfoque promueve la modularidad y la mantenibilidad del código, permitiendo que las funciones se importen fácilmente donde se necesiten.
+
+### Estructura del Archivo `index.js`
+
+El archivo `index.js` actúa como un punto de entrada para exportar las funciones definidas en la carpeta. Aquí está la estructura del archivo:
+
+```jsx
+import isLiked from "./isLiked";
+import checkForUpdates from "./checkForUpdates";
+import distanceBetweenTwoPoints from "./distanceBetweenTwoPoints";
+import { getRegion, maxDistance } from './functionsMapView';
+
+export { isLiked, checkForUpdates, distanceBetweenTwoPoints, getRegion, maxDistance };
+
+```
+
+### Descripción de las Funciones Importadas
+
+1. **`isLiked`**
+    - Esta función se encarga de verificar si un Comercio ha sido marcado como "me gusta" por un usuario. Puede utilizarse para gestionar la interacción del usuario y personalizar la experiencia en la interfaz.
+2. **`checkForUpdates`**
+    - Esta función comprueba si hay actualizaciones disponibles para la aplicación o algún componente específico. Se puede utilizar para notificar a los usuarios sobre la disponibilidad de nuevas características o correcciones de errores.
+3. **`distanceBetweenTwoPoints`**
+    - Calcula la distancia entre dos puntos geográficos dados sus coordenadas (latitud y longitud). Es útil en aplicaciones que requieren cálculos de distancia, como mapas o servicios basados en ubicación.
+4. **`getRegion`**
+    - Esta función obtiene información sobre una región geográfica específica, en relación con mapas o datos de ubicación. Facilita la manipulación y visualización de datos geográficos en la aplicación.
+5. **`maxDistance`**
+    - Define la distancia máxima permitida para ciertas operaciones, como la búsqueda de comercios o servicios dentro de un rango específico. Puede ayudar a optimizar las consultas y mejorar la experiencia del usuario al limitar los resultados según la proximidad.
+
+### Conclusión
+
+La carpeta `functions` proporciona un conjunto de utilidades que simplifican el desarrollo de la aplicación. Al exportar funciones desde `index.js`, se garantiza que se puedan importar y utilizar de manera eficiente en diferentes módulos, fomentando la reutilización del código y mejorando la organización del proyecto. Esta estructura es clave para mantener un código limpio y fácil de entender a medida que la aplicación crece y evoluciona.
