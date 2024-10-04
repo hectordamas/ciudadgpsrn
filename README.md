@@ -1451,3 +1451,143 @@ export { isLiked, checkForUpdates, distanceBetweenTwoPoints, getRegion, maxDista
 ### Conclusión
 
 La carpeta `functions` proporciona un conjunto de utilidades que simplifican el desarrollo de la aplicación. Al exportar funciones desde `index.js`, se garantiza que se puedan importar y utilizar de manera eficiente en diferentes módulos, fomentando la reutilización del código y mejorando la organización del proyecto. Esta estructura es clave para mantener un código limpio y fácil de entender a medida que la aplicación crece y evoluciona.
+
+## 6. Carpeta `components`
+
+La carpeta `components` contiene una serie de componentes reutilizables que encapsulan funcionalidades específicas dentro de la aplicación. Estos componentes se utilizan en diversas partes de la interfaz de usuario para mejorar la modularidad, reutilización del código y mantener un diseño consistente a lo largo de la aplicación.
+
+### Estructura del Archivo `index.js`
+
+El archivo `index.js` de esta carpeta actúa como un punto central donde se importan y exportan todos los componentes disponibles, facilitando su uso en otros módulos de la aplicación. Esto permite que los desarrolladores puedan importar directamente cualquier componente desde la carpeta `components` sin tener que referirse a los archivos individuales de cada componente.
+
+```jsx
+import CustomDrawer from "./CustomDrawer";
+import Error from "./Error";
+import LoadingLottie from "./LoadingLottie";
+import MultiSelect from "./MultiSelect";
+import Processing from "./Processing";
+import Success from "./Success";
+import SearchingCommerces from "./SearchingCommerces";
+import Spinner from "./Spinner";
+import ErrorHandling from "./ErrorHandling";
+import SuccessHandling from "./SuccessHandling";
+import MapViewDirections from "./MapViewDirections";
+import InstaStory from "./InstaStory";
+import FacebookLogin from './FacebookLogin';
+import GoogleLogin from './GoogleLogin';
+import { CreditCardInput } from './react-native-credit-card-input';
+import TagInput from './react-native-tags-input';
+import ComerciosAsociadosList from './ComerciosAsociadosList';
+import Reestablecer from './Reestablecer';
+import VistaMapa from './VistaMapa';
+import LineChart from './LineChart';
+import CommercesList from './CommercesList';
+import CartExcerpt from './CartExcerpt';
+import SliderComponent from './SliderComponent';
+import Pricing from './Pricing';
+import AppleLogin from './AppleLogin';
+import SwipeDownModal from "./SwipeDownModal";
+import Horario from "./Horario";
+import Notification from "./Notification";
+import QuestionOnCommerce from "./questions/QuestionOnCommerce";
+import PcategoriesModal from "./products/PcategoriesModal";
+
+export {
+    CustomDrawer,
+    Error,
+    LoadingLottie,
+    MultiSelect,
+    Processing,
+    Success,
+    SearchingCommerces,
+    Spinner,
+    ErrorHandling,
+    SuccessHandling,
+    MapViewDirections,
+    InstaStory,
+    GoogleLogin,
+    FacebookLogin,
+    AppleLogin,
+    CreditCardInput,
+    TagInput,
+    ComerciosAsociadosList,
+    Reestablecer,
+    VistaMapa,
+    LineChart,
+    CommercesList,
+    CartExcerpt,
+    SliderComponent,
+    Pricing,
+    SwipeDownModal,
+    Horario,
+    Notification,
+    QuestionOnCommerce,
+    PcategoriesModal
+}
+
+```
+
+### Descripción de los Componentes
+
+1. **`CustomDrawer`**
+    - Un componente de menú lateral personalizado (drawer), que permite una navegación intuitiva y rápida dentro de la aplicación.
+2. **`Error`**
+    - Componente que muestra mensajes de error en caso de que algo salga mal en la aplicación, proporcionando una experiencia de usuario clara y comprensible.
+3. **`LoadingLottie`**
+    - Un componente que utiliza animaciones Lottie para indicar que algo está cargando. Mejora la estética visual durante procesos que tardan un poco.
+4. **`MultiSelect`**
+    - Proporciona una interfaz para seleccionar múltiples opciones de una lista, comúnmente usado en formularios o filtros.
+5. **`Processing`**
+    - Componente de procesamiento que muestra una animación o mensaje indicando que una tarea está en progreso.
+6. **`Success`**
+    - Componente que muestra mensajes de éxito después de que una operación se haya completado correctamente.
+7. **`SearchingCommerces`**
+    - Muestra un indicador de búsqueda mientras la aplicación busca comercios.
+8. **`Spinner`**
+    - Indicador de carga circular que se utiliza para mostrar que un proceso está en marcha.
+9. **`ErrorHandling`**
+    - Componente encargado de manejar errores, mostrando mensajes claros cuando ocurre un fallo inesperado.
+10. **`SuccessHandling`**
+    - Gestiona y muestra notificaciones de éxito tras la realización de una acción.
+11. **`MapViewDirections`**
+    - Componente que facilita la visualización de rutas en mapas, útil para indicar direcciones entre dos puntos geográficos.
+12. **`InstaStory`**
+    - Un componente para mostrar historias al estilo de Instagram, utilizado para mostrar contenido de manera atractiva y rápida.
+13. **`GoogleLogin` y `FacebookLogin`**
+    - Estos componentes facilitan la autenticación a través de Google y Facebook, proporcionando un acceso rápido y seguro para los usuarios.
+14. **`AppleLogin`**
+    - Componente de autenticación que permite a los usuarios iniciar sesión a través de Apple ID.
+15. **`CreditCardInput`**
+    - Un componente para la entrada de información de tarjetas de crédito, usado en el flujo de pago.
+16. **`TagInput`**
+    - Entrada de etiquetas o palabras clave, útil en formularios que requieren categorizar o añadir varios términos.
+17. **`ComerciosAsociadosList`**
+    - Muestra una lista de comercios asociados, proporcionando un listado visual de las opciones disponibles para los usuarios.
+18. **`Reestablecer`**
+    - Componente relacionado con la funcionalidad de restablecer contraseñas u otros elementos dentro de la aplicación.
+19. **`VistaMapa`**
+    - Un componente para la visualización de mapas interactivos, útil para ubicaciones y navegación.
+20. **`LineChart`**
+    - Muestra gráficos de líneas, comúnmente usados para visualizaciones de datos, como tendencias de ventas o estadísticas.
+21. **`CommercesList`**
+    - Lista de comercios, mostrando un resumen de cada comercio disponible en la plataforma.
+22. **`CartExcerpt`**
+    - Muestra un resumen del carrito de compras, permitiendo al usuario ver un resumen rápido de sus productos antes de finalizar la compra.
+23. **`SliderComponent`**
+    - Un componente de carrusel o "slider" que muestra múltiples elementos desplazables, ideal para galerías de productos o promociones.
+24. **`Pricing`**
+    - Muestra la estructura de precios o detalles de costos de los productos o servicios.
+25. **`SwipeDownModal`**
+    - Modal que se cierra al deslizar hacia abajo, usado para mostrar información temporal o ventanas emergentes.
+26. **`Horario`**
+    - Componente para gestionar y mostrar horarios, útil para definir las horas de apertura de comercios.
+27. **`Notification`**
+    - Maneja las notificaciones dentro de la aplicación, mostrando alertas o recordatorios a los usuarios.
+28. **`QuestionOnCommerce`**
+    - Componente para manejar preguntas relacionadas con comercios específicos, permitiendo a los usuarios enviar y ver preguntas/respuestas.
+29. **`PcategoriesModal`**
+    - Modal para la gestión de categorías de productos, facilitando la selección o filtrado de categorías en vistas de productos.
+
+### Conclusión
+
+La carpeta `components` alberga componentes reutilizables y clave para la experiencia de usuario en la aplicación. Al agruparlos de manera modular y exportarlos desde un único archivo `index.js`, se simplifica su integración en diferentes partes de la aplicación. Esto no solo mejora la organización del proyecto, sino que también optimiza el flujo de trabajo de desarrollo, al permitir que los componentes sean fácilmente accesibles y mantenibles.
